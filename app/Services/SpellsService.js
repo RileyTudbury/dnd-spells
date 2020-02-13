@@ -66,6 +66,12 @@ class SpellsService {
 
   setMySpell(id) {
     let spell = store.State.mySpells.find(s => s._id == id)
+    if (!spell) {
+      spell = store.State.mySpells.find(s => s._id == id)
+      if (!spell) {
+        console.error("Invalid Song Id")
+      }
+    }
     store.commit("activeSpell", spell)
   }
 
