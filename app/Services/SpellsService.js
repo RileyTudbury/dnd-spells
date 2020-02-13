@@ -66,7 +66,6 @@ class SpellsService {
   }
 
   setMySpell(id) {
-    debugger
     let spell = store.State.mySpells.find(s => s._id == id)
     if (!spell) {
       spell = store.State.mySpells.find(s => s._id == id)
@@ -110,7 +109,6 @@ class SpellsService {
       .delete(store.State.activeSpell._id)
       .then(res => {
         let filteredSpells = store.State.mySpells.filter(s => s._id != store.State.activeSpell._id)
-        debugger
         store.commit("mySpells", filteredSpells)
         store.commit("activeSpell", null)
       })
