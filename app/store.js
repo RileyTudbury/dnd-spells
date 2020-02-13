@@ -1,7 +1,7 @@
 import Spell from "./Models/Spell.js";
 
 let _state = {
-  activeSpell: new Spell({ title: "Spell" }),
+  activeSpell: new Spell({}),
   /** @type {Spell[]} */
   spells: [],
   /**@type {Spell[]} */

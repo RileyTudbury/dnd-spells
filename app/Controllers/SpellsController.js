@@ -17,11 +17,9 @@ function _draw() {
 function _drawActiveSpell() {
   if (store.State.activeSpell) {
     document.getElementById("active-spell").innerHTML = store.State.activeSpell.Template
+    return;
   }
-  else {
-    document.getElementById("active-spell").innerHTML = ""
-  }
-
+  document.getElementById("active-spell").innerHTML = ""
 }
 
 function _drawMySpells() {
@@ -30,8 +28,8 @@ function _drawMySpells() {
 
   mySpells.forEach(s => {
     template += `<li onclick="app.spellsController.getMySpellById('${s._id}')">${s.name}</li>`
-    document.getElementById("my-spells").innerHTML = template
   })
+  document.getElementById("my-spells").innerHTML = template
 }
 
 
@@ -49,6 +47,7 @@ export default class SpellsController {
   }
 
   getSpellById(url) {
+
     SpellsService.getSpellById(url)
   }
 

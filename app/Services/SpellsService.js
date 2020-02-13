@@ -36,7 +36,7 @@ class SpellsService {
       .then(res => {
         let spell = new Spell(res.data)
         store.commit("activeSpell", spell)
-        console.log("from spell by id", store.State.activeSpell)
+        console.log("from spell by id Active Spell: ", store.State.activeSpell)
       })
   }
 
@@ -53,6 +53,7 @@ class SpellsService {
   }
 
   getMySpellById(id) {
+
     _sandboxApi
       .get(id)
       .then(res => {
@@ -65,11 +66,13 @@ class SpellsService {
   }
 
   setMySpell(id) {
+    debugger
     let spell = store.State.mySpells.find(s => s._id == id)
     if (!spell) {
       spell = store.State.mySpells.find(s => s._id == id)
       if (!spell) {
-        console.error("Invalid Song Id")
+        console.error("Invalid Spell Id")
+        return;
       }
     }
     store.commit("activeSpell", spell)
@@ -87,12 +90,12 @@ class SpellsService {
 
     }
 
-    console.log("FROM ADD SPELL", spellDescription)
+    console.log("FROM ADD SPELL", store.State.activeSpell._id)
 
     _sandboxApi
       .post("", store.State.activeSpell)
       .then(res => {
-        let newSpell = store.State.activeSpell
+        let newSpell = new Spell(res.data.data)
         let mySpells = [...store.State.mySpells, newSpell]
         store.commit("mySpells", mySpells)
 
@@ -107,6 +110,7 @@ class SpellsService {
       .delete(store.State.activeSpell._id)
       .then(res => {
         let filteredSpells = store.State.mySpells.filter(s => s._id != store.State.activeSpell._id)
+        debugger
         store.commit("mySpells", filteredSpells)
         store.commit("activeSpell", null)
       })
