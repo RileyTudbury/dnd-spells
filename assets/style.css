@@ -1,0 +1,16 @@
+body{
+  height: 100vh;
+}
+
+#spell-list li {
+  cursor: pointer;
+}
+
+#my-spells li {
+  cursor: pointer;
+}
+
+li:hover{
+  text-decoration: underline;
+  text-shadow: 1px 1px blue;
+}
